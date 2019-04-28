@@ -30,3 +30,7 @@ This is project 2 of the Udacity Data Science Nanodegree Term 2. The project foc
     `python run.py`
 
 3. Go to localhost if running locally
+
+## Acknowledgment
+
+Thanks to Figure Eight for the distaster messages. 
