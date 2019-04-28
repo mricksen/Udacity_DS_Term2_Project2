@@ -31,6 +31,9 @@ This is project 2 of the Udacity Data Science Nanodegree Term 2. The project foc
 
 3. Go to localhost if running locally
 
+## Model Decisions
+I was required to use Gridsearch but had to restrict the parameters I used so that the model would complete training in a reasonable amount of time which is why there is a single parameter. To increase model performance include other available parameters.
+
 ## Acknowledgment
 
 Thanks to Figure Eight for the distaster messages. 
