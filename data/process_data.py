@@ -7,6 +7,11 @@ import sqlite3
 
 
 def load_data(messages_filepath, categories_filepath):
+    '''
+    Create dataframe from messages and categories using
+    the filepaths for that data
+    '''
+    
     messages_df = pd.read_csv(messages_filepath)
     categories_df = pd.read_csv(categories_filepath)
     
@@ -15,6 +20,10 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    '''
+    Cleans the dataframe. 
+    '''
+    
     categories = df.categories.str.split(";", expand=True)
     
     row = categories.iloc[0]
@@ -45,6 +54,10 @@ def clean_data(df):
 
 
 def save_data(df, database_filepath):
+    '''
+    Saves the clean data to a sqlite database.
+    '''
+    
     engine = create_engine('sqlite:///'+database_filepath)
     
     # Uncomment below code to create new table if make any updates and need to

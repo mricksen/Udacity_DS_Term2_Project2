@@ -19,6 +19,9 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.externals import joblib
 
 def load_data(database_filepath):
+    '''
+    Load data from database and create the X and Y variables to train our model
+    '''
     engine = create_engine('sqlite:///'+database_filepath)
     df = pd.read_sql_table('disaster_messages', engine)
     
@@ -28,6 +31,10 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 def tokenize(text):
+    '''
+    Input text and output the tokenized text.
+    '''
+
     #create tokens using word_tokenize
     text = re.sub(r'[^\w\s]','',text)
     
@@ -47,6 +54,10 @@ def tokenize(text):
 
 
 def build_model():
+    '''
+    Build and initialize classifier pipeline. Doesn't take an 
+    input but outputs the model
+    '''
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -64,11 +75,18 @@ def build_model():
     return cv
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    '''
+    Make predictions using the classifier model and return the 
+    classification report
+    '''
     Y_pred = model.predict(X_test)
     return classification_report(Y_test, Y_pred, target_names = category_names)
 
 
 def save_model(model, model_filepath):
+    '''
+    Saves the model as a pickle file.
+    '''
     joblib.dump(model, model_filepath)
 
 
